@@ -1,0 +1,298 @@
+{
+    "category": {
+        "name": "Events",
+        "slug": "events",
+        "description": "Alliance gatherings and inaugurations",
+        "is_active": true
+    },
+    "posts": [
+        {
+            "title": "Lagos East General Assembly & Inauguration of Local Managers",
+            "slug": "lagos-east-general-assembly-local-managers-inauguration",
+            "content": "<p>The Lagos Grassroots Alliance is set to convene the Lagos East General Assembly and the inauguration of its local managers, reinforcing its commitment to building stronger connections between communities and effective grassroots leadership.</p><p>Held under the theme <em>“Building the Grassroots, Building the People,”</em> the gathering will bring together stakeholders and community leaders to promote unity, participation and people-focused development across Lagos East.</p><p>As the organiser, the Lagos Grassroots Alliance continues to champion its vision of <em>“One Lagos, Many Voices,”</em> creating a platform for grassroots engagement and collective action while strengthening the structures that connect leadership with the people.</p>",
+            "featured_image_path": "posts/featured/lagos-east-general-assembly-local-managers-inauguration.webp",
+            "published_at": "2026-09-24T12:03:37+00:00",
+            "images": []
+        },
+        {
+            "title": "Lagos Central General Assembly & Inauguration of Local Managers",
+            "slug": "lagos-central-general-assembly-local-managers-inauguration",
+            "content": "<p>The <strong>Lagos Grassroots Alliance</strong> is bringing together community leaders, stakeholders and grassroots mobilisers for the <strong>Lagos Central General Assembly and the inauguration of its local managers</strong>—an important step towards strengthening grassroots participation and leadership.</p><p>With the theme <em>“Securing the Future, Through Innovation &amp; Participation,”</em> the gathering reflects the Alliance’s commitment to creating stronger structures that connect communities, leaders and citizens in the pursuit of a more united Lagos.</p><p>Driven by its vision of <em>“One Lagos, Many Voices,”</em> the Lagos Grassroots Alliance continues to provide a platform for grassroots engagement, inclusive participation and people-centred leadership across Lagos.</p>",
+            "featured_image_path": "posts/featured/lagos-central-general-assembly-local-managers-inauguration.webp",
+            "published_at": "2026-09-24T12:03:35+00:00",
+            "images": []
+        },
+        {
+            "title": "Lagos East General Assembly — Ikorodu",
+            "slug": "lagos-east-general-assembly-ikorodu-gallery",
+            "content": "<p>Scenes from the Lagos Grassroots Alliance Lagos East General Assembly and inauguration of local managers in Ikorodu — community leaders and grassroots mobilisers gathering under the theme <em>“Building the Grassroots, Building the People.”</em></p><p>These moments capture the Alliance’s vision of <em>“One Lagos, Many Voices”</em> in action across Lagos East.</p>",
+            "featured_image_path": "posts/featured/lagos-east-general-assembly-ikorodu-gallery.webp",
+            "published_at": "2026-09-24T12:57:37+00:00",
+            "images": [
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/01.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 1",
+                    "sort_order": 0
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/02.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 2",
+                    "sort_order": 1
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/03.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 3",
+                    "sort_order": 2
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/04.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 4",
+                    "sort_order": 3
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/05.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 5",
+                    "sort_order": 4
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/06.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 6",
+                    "sort_order": 5
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/07.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 7",
+                    "sort_order": 6
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/08.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 8",
+                    "sort_order": 7
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/09.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 9",
+                    "sort_order": 8
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/10.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 10",
+                    "sort_order": 9
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/11.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 11",
+                    "sort_order": 10
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/12.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 12",
+                    "sort_order": 11
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/13.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 13",
+                    "sort_order": 12
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/14.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 14",
+                    "sort_order": 13
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/15.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 15",
+                    "sort_order": 14
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/16.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 16",
+                    "sort_order": 15
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/17.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 17",
+                    "sort_order": 16
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/18.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 18",
+                    "sort_order": 17
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/19.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 19",
+                    "sort_order": 18
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/20.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 20",
+                    "sort_order": 19
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/21.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 21",
+                    "sort_order": 20
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/22.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 22",
+                    "sort_order": 21
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/23.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 23",
+                    "sort_order": 22
+                },
+                {
+                    "path": "posts/gallery/lagos-east-general-assembly-ikorodu-gallery/24.webp",
+                    "alt_text": "Lagos East General Assembly — Ikorodu — photo 24",
+                    "sort_order": 23
+                }
+            ]
+        },
+        {
+            "title": "Lagos Central General Assembly — Apapa/Iganmu",
+            "slug": "lagos-central-general-assembly-apapa-iganmu-gallery",
+            "content": "<p>Highlights from the Lagos Grassroots Alliance Lagos Central General Assembly and inauguration of local managers at Apapa/Iganmu — stakeholders and community leaders strengthening grassroots participation.</p><p>Held in the spirit of <em>“Securing the Future, Through Innovation &amp; Participation,”</em> and the Alliance vision of <em>“One Lagos, Many Voices.”</em></p>",
+            "featured_image_path": "posts/featured/lagos-central-general-assembly-apapa-iganmu-gallery.webp",
+            "published_at": "2026-09-24T12:58:56+00:00",
+            "images": [
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/01.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 1",
+                    "sort_order": 0
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/02.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 2",
+                    "sort_order": 1
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/03.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 3",
+                    "sort_order": 2
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/04.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 4",
+                    "sort_order": 3
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/05.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 5",
+                    "sort_order": 4
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/06.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 6",
+                    "sort_order": 5
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/07.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 7",
+                    "sort_order": 6
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/08.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 8",
+                    "sort_order": 7
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/09.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 9",
+                    "sort_order": 8
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/10.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 10",
+                    "sort_order": 9
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/11.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 11",
+                    "sort_order": 10
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/12.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 12",
+                    "sort_order": 11
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/13.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 13",
+                    "sort_order": 12
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/14.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 14",
+                    "sort_order": 13
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/15.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 15",
+                    "sort_order": 14
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/16.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 16",
+                    "sort_order": 15
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/17.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 17",
+                    "sort_order": 16
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/18.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 18",
+                    "sort_order": 17
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/19.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 19",
+                    "sort_order": 18
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/20.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 20",
+                    "sort_order": 19
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/21.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 21",
+                    "sort_order": 20
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/22.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 22",
+                    "sort_order": 21
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/23.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 23",
+                    "sort_order": 22
+                },
+                {
+                    "path": "posts/gallery/lagos-central-general-assembly-apapa-iganmu-gallery/24.webp",
+                    "alt_text": "Lagos Central General Assembly — Apapa/Iganmu — photo 24",
+                    "sort_order": 23
+                }
+            ]
+        },
+        {
+            "title": "Lagos Grassroots Alliance in the field",
+            "slug": "lagos-grassroots-alliance-field-gallery",
+            "content": "<p>A look at Lagos Grassroots Alliance gatherings across the city — organisers, local managers and community members building one Lagos with many voices.</p>",
+            "featured_image_path": "posts/featured/lagos-grassroots-alliance-field-gallery.webp",
+            "published_at": "2026-09-24T13:00:14+00:00",
+            "images": [
+                {
+                    "path": "posts/gallery/lagos-grassroots-alliance-field-gallery/01.webp",
+                    "alt_text": "Lagos Grassroots Alliance in the field — photo 1",
+                    "sort_order": 0
+                }
+            ]
+        }
+    ]
+}

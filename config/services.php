@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'termii' => [
+        'key' => env('TERMII_API_KEY'),
+        'sender_id' => env('TERMII_SENDER_ID', 'LGA'),
+        'base_url' => env('TERMII_BASE_URL', 'https://api.ng.termii.com'),
+    ],
+
+    'turnstile' => [
+        'site_key' => env('TURNSTILE_SITE_KEY'),
+        'secret_key' => env('TURNSTILE_SECRET_KEY'),
+    ],
+
 ];

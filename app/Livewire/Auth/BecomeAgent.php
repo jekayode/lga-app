@@ -15,7 +15,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.auth', ['maxWidth' => 'max-w-2xl'])]
-#[Title('Become an Agent')]
+#[Title('Coordinators Corner')]
 class BecomeAgent extends Component
 {
     public string $name = '';

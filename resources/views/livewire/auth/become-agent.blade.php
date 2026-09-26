@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-6">
     <x-auth-header
-        :title="__('Become an Agent')"
+        :title="__('Coordinators Corner')"
         :description="__('Take the Alliance into your ward. A coordinator referral code is required.')"
     />
 
@@ -71,7 +71,7 @@
         <x-turnstile wire:model="turnstileToken" />
 
         <flux:button type="submit" variant="primary" class="w-full" wire:loading.attr="disabled">
-            {{ __('Become an Agent') }}
+            {{ __('Join Coordinators Corner') }}
         </flux:button>
     </form>
 

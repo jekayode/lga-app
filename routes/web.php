@@ -28,7 +28,8 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('join', JoinAlliance::class)->name('join');
-    Route::get('become-an-agent', BecomeAgent::class)->name('become-agent');
+    Route::get('coordinators-corner', BecomeAgent::class)->name('become-agent');
+    Route::redirect('become-an-agent', '/coordinators-corner');
     Route::post('forgot-password', PasswordResetLinkController::class)->name('password.email');
 });
 

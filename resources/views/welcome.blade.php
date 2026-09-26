@@ -21,7 +21,7 @@
                 </p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="{{ route('join') }}" class="btn-lga-primary" wire:navigate>Join the Alliance</a>
-                    <a href="{{ route('become-agent') }}" class="btn-lga-secondary-light" wire:navigate>Become an Agent</a>
+                    <a href="{{ route('become-agent') }}" class="btn-lga-secondary-light" wire:navigate>Coordinators Corner</a>
                 </div>
                 <p class="mt-6 text-sm text-zinc-300">Footprints in all 20 Local Governments · Everyone welcome · No one left behind</p>
             </div>
@@ -194,7 +194,7 @@
                     <li>See your impact grow, street by street.</li>
                     <li>Belong to something bigger than yourself.</li>
                 </ul>
-                <a href="{{ route('become-agent') }}" class="btn-lga-primary mt-8" wire:navigate>Become an Agent</a>
+                <a href="{{ route('become-agent') }}" class="btn-lga-primary mt-8" wire:navigate>Coordinators Corner</a>
             </div>
             <div class="rounded-3xl bg-lga-navy p-8 text-white">
                 <h3 class="text-2xl font-bold">Join in under 2 minutes.</h3>
@@ -217,7 +217,7 @@
                     ['Does it cost anything?', 'No. Joining is completely free. All it costs is your voice.'],
                     ['Do I have to belong to a political party?', 'No. The Alliance is about Lagos, not any party. Everyone who loves Lagos is welcome, full stop.'],
                     ['What is an Agent?', 'An Agent is a voice-carrier — someone who takes the message into their own community and brings neighbours, friends and family into the movement, ward by ward.'],
-                    ['How do I become an Agent?', 'Tap Become an Agent, choose your Local Government and Ward, enter a coordinator referral code, verify your email OTP, set up 2FA, and you\'re ready.'],
+                    ['How do I join Coordinators Corner?', 'Tap Coordinators Corner, choose your Local Government and Ward, enter a coordinator referral code, verify your email OTP, set up 2FA, and you\'re ready.'],
                     ['Where does the Alliance operate?', 'Everywhere in Lagos — all 20 Local Governments and every ward. If you\'re in Lagos, we\'re near you.'],
                     ['Is my information safe?', 'Yes. We verify by phone and protect your details. Your information is only ever used to strengthen our collective voice — never sold, never misused.'],
                 ] as $index => [$question, $answer])
@@ -241,7 +241,7 @@
             <p class="mt-4 text-zinc-300">Join a movement of Lagosians building a stronger Lagos — one voice, one street, one ward at a time.</p>
             <div class="mt-8 flex flex-wrap justify-center gap-3">
                 <a href="{{ route('join') }}" class="btn-lga-primary" wire:navigate>Join the Alliance</a>
-                <a href="{{ route('become-agent') }}" class="btn-lga-secondary-light" wire:navigate>Become an Agent</a>
+                <a href="{{ route('become-agent') }}" class="btn-lga-secondary-light" wire:navigate>Coordinators Corner</a>
             </div>
         </div>
     </section>

@@ -29,6 +29,8 @@ class Media
 
     /**
      * Resolve a branding asset URL, caching the remote existence check so R2 is not hit per request.
+     *
+     * Falls back to the bundled asset if the cache or disk is unavailable (e.g. before migrations run).
      */
     public static function brandingUrl(string $key): ?string
     {
@@ -38,10 +40,13 @@ class Media
             return null;
         }
 
-        $url = Cache::memo()->remember(
-            self::brandingCacheKey($key),
-            now()->addDay(),
-            fn (): string => self::disk()->exists($path) ? (string) self::url($path) : '',
+        $url = rescue(
+            fn (): string => Cache::memo()->remember(
+                self::brandingCacheKey($key),
+                now()->addDay(),
+                fn (): string => self::disk()->exists($path) ? (string) self::url($path) : '',
+            ),
+            '',
         );
 
         return $url === '' ? null : $url;

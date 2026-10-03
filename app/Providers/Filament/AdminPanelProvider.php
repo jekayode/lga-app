@@ -29,8 +29,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Lagos Grassroots Alliance')
-            ->brandLogo(Media::logoUrl())
-            ->darkModeBrandLogo(Media::logoUrl())
+            ->brandLogo(fn (): string => Media::logoUrl())
+            ->darkModeBrandLogo(fn (): string => Media::logoUrl())
             ->brandLogoHeight('2.5rem')
             ->colors([
                 'primary' => Color::hex('#0B3D5C'),

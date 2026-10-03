@@ -85,6 +85,8 @@ class PostForm
                             ->helperText('Used on homepage and news cards. Prefer WebP under ~150KB.')
                             ->columnSpanFull(),
                         RichEditor::make('content')
+                            ->fileAttachmentsDisk($mediaDisk)
+                            ->fileAttachmentsDirectory('posts/content')
                             ->required()
                             ->columnSpanFull(),
                     ]),

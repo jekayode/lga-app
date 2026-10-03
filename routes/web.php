@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\Seo\LlmsTxtController;
+use App\Http\Controllers\Seo\SitemapController;
 use App\Http\Middleware\EnsureMembershipReady;
 use App\Livewire\Agents\Applications;
 use App\Livewire\Agents\Apply;
@@ -14,9 +16,21 @@ use App\Livewire\Dashboard\Index as Dashboard;
 use App\Livewire\Posts\Index as PostsIndex;
 use App\Livewire\Posts\Show as PostsShow;
 use App\Models\Post;
+use App\Support\Seo;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', function (Seo $seo) {
+    $seo->indexable()
+        ->schema(Seo::organizationSchema())
+        ->schema([
+            '@type' => 'WebSite',
+            '@id' => url('/').'/#website',
+            'url' => url('/'),
+            'name' => config('app.name'),
+            'inLanguage' => 'en-NG',
+            'publisher' => ['@id' => url('/').'/#organization'],
+        ]);
+
     return view('welcome', [
         'latestPosts' => Post::query()
             ->published()
@@ -32,6 +46,9 @@ Route::middleware('guest')->group(function () {
     Route::redirect('become-an-agent', '/coordinators-corner');
     Route::post('forgot-password', PasswordResetLinkController::class)->name('password.email');
 });
+
+Route::get('sitemap.xml', SitemapController::class)->name('seo.sitemap');
+Route::get('llms.txt', LlmsTxtController::class)->name('seo.llms');
 
 Route::get('news', PostsIndex::class)->name('posts.index');
 Route::get('news/{post:slug}', PostsShow::class)->name('posts.show');

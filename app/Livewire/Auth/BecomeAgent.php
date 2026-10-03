@@ -7,6 +7,7 @@ use App\Models\PollingUnit;
 use App\Models\Profession;
 use App\Models\Ward;
 use App\Services\Membership\RegistersMember;
+use App\Support\Seo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Computed;
@@ -44,8 +45,12 @@ class BecomeAgent extends Component
 
     public string $turnstileToken = '';
 
-    public function mount(): void
+    public function mount(Seo $seo): void
     {
+        $seo->indexable()
+            ->canonical(url()->current())
+            ->description('Become an Alliance agent or coordinator: carry the message into your ward, sign up neighbours and grow the movement street by street across Lagos.');
+
         $this->referral_code = strtoupper((string) request()->query('ref', ''));
     }
 

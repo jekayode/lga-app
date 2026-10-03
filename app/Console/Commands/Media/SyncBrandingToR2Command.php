@@ -55,7 +55,8 @@ class SyncBrandingToR2Command extends Command
                 $contents = File::get($local);
             }
 
-            $disk->put($remote, $contents);
+            // Branding keeps fixed filenames, so use a shorter cache lifetime than uploads.
+            $disk->put($remote, $contents, ['CacheControl' => Media::BRANDING_CACHE_CONTROL]);
             $this->info("Uploaded: {$remote} → ".$disk->url($remote));
         }
 

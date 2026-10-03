@@ -9,6 +9,7 @@ use App\Models\Profession;
 use App\Models\Ward;
 use App\Services\Membership\RegistersMember;
 use App\Services\Otp\OtpBroker;
+use App\Support\Seo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Computed;
@@ -48,8 +49,12 @@ class JoinAlliance extends Component
 
     public string $turnstileToken = '';
 
-    public function mount(): void
+    public function mount(Seo $seo): void
     {
+        $seo->indexable()
+            ->canonical(url()->current())
+            ->description('Join the Lagos Grassroots Alliance in under two minutes. Add your voice to a people-led movement across all 20 Local Governments of Lagos.');
+
         $this->referral_code = strtoupper((string) request()->query('ref', ''));
     }
 

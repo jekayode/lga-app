@@ -9,7 +9,11 @@
         @if ($post->featuredImageUrl())
             <img
                 src="{{ $post->featuredImageUrl() }}"
-                alt=""
+                alt="{{ $post->title }}"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
                 class="aspect-[16/10] w-full object-cover transition duration-300 group-hover:scale-[1.02]"
             >
         @else

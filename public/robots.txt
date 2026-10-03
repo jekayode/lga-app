@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /command-centre
+Disallow: /agents/
+Disallow: /settings
+Disallow: /otp/
+Disallow: /two-factor/
+
+Sitemap: https://lagosgrassrootsalliance.com/sitemap.xml

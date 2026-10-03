@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Media
 {
+    public const string BRANDING_CACHE_CONTROL = 'public, max-age=604800';
+
     public static function diskName(): string
     {
         return (string) config('filesystems.media', 'public');

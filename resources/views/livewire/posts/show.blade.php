@@ -3,10 +3,10 @@
         <p class="text-sm font-semibold uppercase tracking-wide text-lga-green">{{ $post->category->name }}</p>
     @endif
     <h1 class="mt-2 text-4xl font-bold text-lga-navy">{{ $post->title }}</h1>
-    <p class="mt-3 text-sm text-zinc-500">{{ $post->published_at?->format('j F Y') }}</p>
+    <p class="mt-3 text-sm text-zinc-500"><time datetime="{{ $post->published_at?->toDateString() }}">{{ $post->published_at?->format('j F Y') }}</time></p>
 
     @if ($post->featuredImageUrl())
-        <img src="{{ $post->featuredImageUrl() }}" alt="" class="mt-8 w-full rounded-2xl object-cover">
+        <img src="{{ $post->featuredImageUrl() }}" alt="{{ $post->title }}" fetchpriority="high" class="mt-8 w-full rounded-2xl object-cover">
     @endif
 
     <div class="post-body mt-8">
@@ -52,7 +52,11 @@
                     >
                         <img
                             src="{{ $image->url() }}"
-                            alt="{{ $image->alt_text }}"
+                            alt="{{ $image->alt_text ?: $post->title.' — photo '.$loop->iteration }}"
+                            width="400"
+                            height="300"
+                            loading="lazy"
+                            decoding="async"
                             class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-[1.02]"
                             loading="lazy"
                         >

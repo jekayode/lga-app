@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\Media;
+use App\Support\Seo;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +27,7 @@ class Post extends Model
         'title',
         'slug',
         'content',
+        'meta_description',
         'featured_image_path',
         'published_at',
     ];
@@ -88,6 +90,14 @@ class Post extends Model
         }
 
         return Media::url($this->featured_image_path);
+    }
+
+    /**
+     * Search/social description: the editor's meta description, or an excerpt of the content.
+     */
+    public function seoDescription(): string
+    {
+        return Seo::plainText(filled($this->meta_description) ? $this->meta_description : (string) $this->content);
     }
 
     public function readingTimeMinutes(): int

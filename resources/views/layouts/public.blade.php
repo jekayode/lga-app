@@ -2,6 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
+        @if (request()->routeIs('home'))
+            <link rel="preload" as="image" href="{{ \App\Support\Media::heroUrl() }}" fetchpriority="high">
+        @endif
     </head>
     <body class="min-h-screen bg-white text-lga-navy antialiased">
         <header @class([
@@ -14,6 +17,8 @@
                     <img
                         src="{{ \App\Support\Media::logoWhiteUrl() }}"
                         alt="Lagos Grassroots Alliance"
+                        width="235"
+                        height="194"
                         class="h-14 w-auto object-contain drop-shadow sm:h-20"
                     >
                 </a>
@@ -36,13 +41,13 @@
         <footer class="border-t border-zinc-200 bg-black text-zinc-300">
             <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <img src="{{ \App\Support\Media::logoWhiteUrl() }}" alt="" class="mb-3 h-12 w-auto">
+                    <img src="{{ \App\Support\Media::logoWhiteUrl() }}" alt="" width="235" height="194" loading="lazy" decoding="async" class="mb-3 h-12 w-auto">
                     <p class="text-sm">One Lagos, Many Voices · See the people. Know the streets. Grow the movement.</p>
                 </div>
                 <p class="text-sm">&copy; {{ date('Y') }} Lagos Grassroots Alliance</p>
             </div>
         </footer>
 
-        @fluxScripts
+        @livewireScripts
     </body>
 </html>

@@ -9,6 +9,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -88,6 +89,12 @@ class PostForm
                             ->fileAttachmentsDisk($mediaDisk)
                             ->fileAttachmentsDirectory('posts/content')
                             ->required()
+                            ->columnSpanFull(),
+                        Textarea::make('meta_description')
+                            ->label('Search & social description')
+                            ->helperText('Shown in Google results and link previews. Aim for 120–160 characters. Leave empty to use the start of the article.')
+                            ->maxLength(300)
+                            ->rows(2)
                             ->columnSpanFull(),
                     ]),
                 Section::make('Gallery')

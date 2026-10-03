@@ -68,7 +68,7 @@
             {{ __('Agents must verify an email OTP and set up two-factor authentication before accessing the dashboard.') }}
         </p>
 
-        <x-turnstile wire:model="turnstileToken" />
+        <x-turnstile wire-model="turnstileToken" action="become_agent" />
 
         <flux:button type="submit" variant="primary" class="w-full" wire:loading.attr="disabled">
             {{ __('Join Coordinators Corner') }}

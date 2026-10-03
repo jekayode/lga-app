@@ -5,6 +5,7 @@ use App\Livewire\Auth\BecomeAgent;
 use App\Livewire\Auth\JoinAlliance;
 use App\Models\User;
 use App\Services\Membership\RegistersMember;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Livewire\Livewire;
 
@@ -101,3 +102,26 @@ test('become agent livewire form redirects to otp verification', function () {
         ->assertHasNoErrors()
         ->assertRedirect(route('otp.verify'));
 });
+
+test('registration enforces the application password policy', function () {
+    Password::defaults(fn () => Password::min(12));
+
+    $agent = makeAgent();
+
+    app(RegistersMember::class)->registerCommunityMember(registrationPayload($agent, [
+        'password' => 'short-pass',
+        'password_confirmation' => 'short-pass',
+    ]));
+})->throws(ValidationException::class, 'password');
+
+test('turnstile is required outside local environments even when the secret is missing', function () {
+    config(['services.turnstile.secret_key' => null]);
+    app()->detectEnvironment(fn () => 'production');
+    Password::defaults(fn () => Password::min(8));
+
+    $agent = makeAgent();
+
+    app(RegistersMember::class)->registerCommunityMember(registrationPayload($agent, [
+        'skip_turnstile' => false,
+    ]));
+})->throws(ValidationException::class, 'turnstile token');

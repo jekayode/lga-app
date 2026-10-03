@@ -1,4 +1,4 @@
-@props(['wireModel' => 'turnstileToken'])
+@props(['wireModel' => 'turnstileToken', 'action' => null])
 
 @php
     $siteKey = config('services.turnstile.site_key');
@@ -7,20 +7,23 @@
 @if (filled($siteKey))
     <div
         wire:ignore
-        x-data
+        x-data="{ widgetId: null }"
         x-init="
             window.turnstileReady = window.turnstileReady || new Promise((resolve) => {
                 if (window.turnstile) { resolve(); return; }
                 window.onTurnstileLoad = () => resolve();
             });
             window.turnstileReady.then(() => {
-                turnstile.render($refs.widget, {
+                widgetId = turnstile.render($refs.widget, {
                     sitekey: @js($siteKey),
-                    callback: (token) => $wire.set(@js($wireModel), token),
-                    'expired-callback': () => $wire.set(@js($wireModel), ''),
+                    action: @js($action),
+                    callback: (token) => $wire.$set(@js($wireModel), token, false),
+                    'expired-callback': () => $wire.$set(@js($wireModel), '', false),
+                    'error-callback': () => $wire.$set(@js($wireModel), '', false),
                 });
             });
         "
+        x-on:turnstile-reset.window="if (widgetId !== null) { turnstile.reset(widgetId); }"
     >
         <div x-ref="widget"></div>
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad" async defer></script>

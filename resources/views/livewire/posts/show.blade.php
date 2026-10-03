@@ -10,7 +10,7 @@
     @endif
 
     <div class="post-body mt-8">
-        {!! $post->content !!}
+        {!! str($post->content)->sanitizeHtml() !!}
     </div>
 
     @if ($post->images->isNotEmpty())

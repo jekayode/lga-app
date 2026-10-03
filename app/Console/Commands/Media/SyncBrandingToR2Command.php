@@ -59,6 +59,8 @@ class SyncBrandingToR2Command extends Command
             $this->info("Uploaded: {$remote} → ".$disk->url($remote));
         }
 
+        Media::forgetBrandingUrls();
+
         $this->newLine();
         $this->table(['Asset', 'URL'], [
             ['Logo', Media::logoUrl()],

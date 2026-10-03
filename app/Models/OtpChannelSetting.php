@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Role;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class OtpChannelSetting extends Model
 {
@@ -30,16 +31,43 @@ class OtpChannelSetting extends Model
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saved(fn (OtpChannelSetting $setting) => static::forgetCachedSettings($setting->role));
+        static::deleted(fn (OtpChannelSetting $setting) => static::forgetCachedSettings($setting->role));
+    }
+
+    /**
+     * Resolve the settings for a role, cached across requests and memoized within one.
+     *
+     * Attributes are cached as an array because cache unserialization of objects is disabled.
+     */
     public static function forRole(Role $role): self
     {
-        return static::query()->firstOrCreate(
-            ['role' => $role->value],
-            [
-                'sms_enabled' => false,
-                'email_enabled' => $role->requiresMandatoryEmailOtpAndTwoFactor(),
-                'whatsapp_enabled' => false,
-            ]
+        /** @var array<string, mixed> $attributes */
+        $attributes = Cache::memo()->rememberForever(
+            static::cacheKey($role),
+            fn (): array => static::query()->firstOrCreate(
+                ['role' => $role->value],
+                [
+                    'sms_enabled' => false,
+                    'email_enabled' => $role->requiresMandatoryEmailOtpAndTwoFactor(),
+                    'whatsapp_enabled' => false,
+                ]
+            )->getAttributes(),
         );
+
+        return (new static)->newFromBuilder($attributes);
+    }
+
+    public static function forgetCachedSettings(Role $role): void
+    {
+        Cache::memo()->forget(static::cacheKey($role));
+    }
+
+    protected static function cacheKey(Role $role): string
+    {
+        return "otp_channel_settings.{$role->value}";
     }
 
     /**

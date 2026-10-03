@@ -2,6 +2,7 @@
 
 namespace App\Services\Membership;
 
+use App\Concerns\PasswordValidationRules;
 use App\Enums\OtpChannel;
 use App\Enums\Role;
 use App\Models\User;
@@ -15,6 +16,8 @@ use Illuminate\Validation\ValidationException;
 
 class RegistersMember
 {
+    use PasswordValidationRules;
+
     public function __construct(private OtpBroker $otpBroker) {}
 
     /**
@@ -77,15 +80,12 @@ class RegistersMember
         }
 
         // Livewire binds Turnstile to turnstileToken; accept either key.
-        if (! isset($input['cf-turnstile-response']) && isset($input['turnstileToken'])) {
-            $input['cf-turnstile-response'] = $input['turnstileToken'];
-        }
+        $input['turnstileToken'] ??= $input['cf-turnstile-response'] ?? null;
 
         $skipTurnstile = (bool) ($input['skip_turnstile'] ?? false)
-            || app()->environment('testing')
-            || blank(config('services.turnstile.secret_key'));
+            || (app()->environment('local', 'testing') && blank(config('services.turnstile.secret_key')));
 
-        $validated = Validator::make($input, $this->rules($role, $skipTurnstile))->validate();
+        $validated = Validator::make($input, $this->rules($role))->validate();
 
         $phone = $validated['phone'];
         $ward = Ward::query()->with('localGovernment')->findOrFail($validated['ward_id']);
@@ -94,6 +94,11 @@ class RegistersMember
             throw ValidationException::withMessages([
                 'ward_id' => 'The selected ward does not belong to the selected LGA.',
             ]);
+        }
+
+        // Turnstile tokens are single-use, so only spend one once everything else is valid.
+        if (! $skipTurnstile) {
+            Validator::make($input, $this->turnstileRules($role))->validate();
         }
 
         return DB::transaction(function () use ($validated, $role, $referrer, $phone, $ward) {
@@ -119,15 +124,15 @@ class RegistersMember
     /**
      * @return array<string, mixed>
      */
-    public function rules(Role $role, bool $skipTurnstile = false): array
+    public function rules(Role $role): array
     {
         $channels = $this->otpBroker->enabledChannelsFor($role);
 
-        $rules = [
+        return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'phone' => ['required', 'string', 'max:20', 'unique:users,phone'],
-            'password' => ['required', 'string', 'confirmed', 'min:8'],
+            'password' => $this->passwordRules(),
             'profession_id' => ['required', 'exists:professions,id'],
             'has_disability' => ['sometimes', 'boolean'],
             'disability_notes' => ['nullable', 'string', 'max:255'],
@@ -141,13 +146,21 @@ class RegistersMember
                 Rule::in($channels),
             ],
         ];
+    }
 
-        if (! $skipTurnstile) {
-            $rules['turnstileToken'] = ['required', new Turnstile];
-            $rules['cf-turnstile-response'] = ['nullable'];
-        }
+    /**
+     * @return array<string, mixed>
+     */
+    public function turnstileRules(Role $role): array
+    {
+        return [
+            'turnstileToken' => ['required', new Turnstile(self::turnstileActionFor($role))],
+        ];
+    }
 
-        return $rules;
+    public static function turnstileActionFor(Role $role): string
+    {
+        return $role === Role::Agent ? 'become_agent' : 'join';
     }
 
     protected function resolveReferrer(?string $code, ?Role $requiredRole): ?User

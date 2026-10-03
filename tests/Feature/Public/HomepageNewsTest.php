@@ -33,3 +33,15 @@ test('news index lists published posts', function () {
         ->assertOk()
         ->assertSee('Alliance Mobilises Across Lagos');
 });
+
+test('post content is sanitized before rendering', function () {
+    $post = Post::factory()->create([
+        'content' => '<p>Safe paragraph</p><script>alert("xss")</script>',
+        'published_at' => now()->subHour(),
+    ]);
+
+    $this->get(route('posts.show', $post))
+        ->assertOk()
+        ->assertSee('Safe paragraph')
+        ->assertDontSee('alert("xss")', false);
+});

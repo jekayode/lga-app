@@ -109,11 +109,10 @@ class BecomeAgent extends Component
                 'ward_id' => $this->ward_id,
                 'polling_unit_id' => $this->polling_unit_id,
                 'turnstileToken' => $this->turnstileToken,
-                'cf-turnstile-response' => $this->turnstileToken,
-                'skip_turnstile' => app()->environment('testing') || blank(config('services.turnstile.secret_key')),
             ]);
         } catch (ValidationException $exception) {
             $this->setErrorBag($exception->validator->errors());
+            $this->resetTurnstile();
 
             return null;
         }
@@ -121,6 +120,15 @@ class BecomeAgent extends Component
         Auth::login($user);
 
         return $this->redirect(route('otp.verify'), navigate: true);
+    }
+
+    /**
+     * Turnstile tokens are single-use, so issue a fresh challenge after a failed submit.
+     */
+    protected function resetTurnstile(): void
+    {
+        $this->turnstileToken = '';
+        $this->dispatch('turnstile-reset');
     }
 
     public function render()

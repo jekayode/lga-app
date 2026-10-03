@@ -120,11 +120,10 @@ class JoinAlliance extends Component
                 'polling_unit_id' => $this->polling_unit_id,
                 'otp_channel' => $this->otp_channel,
                 'turnstileToken' => $this->turnstileToken,
-                'cf-turnstile-response' => $this->turnstileToken,
-                'skip_turnstile' => app()->environment('testing') || blank(config('services.turnstile.secret_key')),
             ]);
         } catch (ValidationException $exception) {
             $this->setErrorBag($exception->validator->errors());
+            $this->resetTurnstile();
 
             return null;
         }
@@ -136,6 +135,15 @@ class JoinAlliance extends Component
         }
 
         return $this->redirect(route('dashboard'), navigate: true);
+    }
+
+    /**
+     * Turnstile tokens are single-use, so issue a fresh challenge after a failed submit.
+     */
+    protected function resetTurnstile(): void
+    {
+        $this->turnstileToken = '';
+        $this->dispatch('turnstile-reset');
     }
 
     public function render()

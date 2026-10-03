@@ -44,6 +44,10 @@ return [
     'turnstile' => [
         'site_key' => env('TURNSTILE_SITE_KEY'),
         'secret_key' => env('TURNSTILE_SECRET_KEY'),
+        'allowed_hostnames' => array_values(array_filter(explode(',', (string) env(
+            'TURNSTILE_ALLOWED_HOSTNAMES',
+            (string) parse_url((string) env('APP_URL', ''), PHP_URL_HOST),
+        )))),
     ],
 
 ];

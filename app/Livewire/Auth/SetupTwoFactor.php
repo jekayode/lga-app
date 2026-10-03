@@ -7,6 +7,7 @@ use Laravel\Fortify\Actions\ConfirmTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -16,13 +17,17 @@ class SetupTwoFactor extends Component
 {
     public string $code = '';
 
+    #[Locked]
     public bool $showingQr = false;
 
+    #[Locked]
     public ?string $qrCodeSvg = null;
 
+    #[Locked]
     public ?string $secret = null;
 
     /** @var list<string> */
+    #[Locked]
     public array $recoveryCodes = [];
 
     public function mount(EnableTwoFactorAuthentication $enable): void

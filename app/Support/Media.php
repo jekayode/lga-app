@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class Media
@@ -26,15 +27,36 @@ class Media
         return self::disk()->url($path);
     }
 
+    /**
+     * Resolve a branding asset URL, caching the remote existence check so R2 is not hit per request.
+     */
     public static function brandingUrl(string $key): ?string
     {
         $path = config("branding.{$key}");
 
-        if (blank($path) || ! self::disk()->exists($path)) {
+        if (blank($path)) {
             return null;
         }
 
-        return self::url($path);
+        $url = Cache::memo()->remember(
+            self::brandingCacheKey($key),
+            now()->addDay(),
+            fn (): string => self::disk()->exists($path) ? (string) self::url($path) : '',
+        );
+
+        return $url === '' ? null : $url;
+    }
+
+    public static function forgetBrandingUrls(): void
+    {
+        foreach (array_keys(config('branding', [])) as $key) {
+            Cache::memo()->forget(self::brandingCacheKey($key));
+        }
+    }
+
+    protected static function brandingCacheKey(string $key): string
+    {
+        return 'media.branding.'.self::diskName().'.'.$key;
     }
 
     public static function logoUrl(): string

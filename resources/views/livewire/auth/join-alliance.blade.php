@@ -73,7 +73,7 @@
             <flux:input wire:model="password_confirmation" :label="__('Confirm password')" type="password" required autocomplete="new-password" viewable />
         </div>
 
-        <x-turnstile wire:model="turnstileToken" />
+        <x-turnstile wire-model="turnstileToken" action="join" />
 
         <flux:button type="submit" variant="primary" class="w-full" wire:loading.attr="disabled">
             {{ __('Join the Alliance') }}

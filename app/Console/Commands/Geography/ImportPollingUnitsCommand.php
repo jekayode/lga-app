@@ -33,6 +33,7 @@ class ImportPollingUnitsCommand extends Command
     protected $signature = 'geography:import-polling-units
                             {--file= : CSV path (defaults to database/seeders/data/lagos_polling_units.csv)}
                             {--report= : Where to write the CSV of unmatched rows}
+                            {--create-missing-wards : Create INEC wards that are not in the app yet, then import their units}
                             {--dry-run : Match and report without writing to the database}';
 
     protected $description = 'Import INEC Lagos polling units into matching wards and report wards that do not match';
@@ -45,6 +46,10 @@ class ImportPollingUnitsCommand extends Command
             $this->error("File not found: {$file}");
 
             return self::FAILURE;
+        }
+
+        if ($this->option('create-missing-wards') && ! $this->option('dry-run')) {
+            $this->createMissingWards($file);
         }
 
         $wardIndex = $this->wardIndex();
@@ -115,6 +120,47 @@ class ImportPollingUnitsCommand extends Command
 
         $this->info('Imported '.array_sum(array_map('count', $matched)).' polling units into '.count($matched).' wards.');
         $this->info("Deactivated {$deactivated} placeholder unit(s) in those wards.");
+    }
+
+    protected function createMissingWards(string $file): void
+    {
+        $wardIndex = $this->wardIndex();
+        $lgas = LocalGovernment::query()->get()->keyBy(fn (LocalGovernment $lga) => static::normalize($lga->name));
+        $created = 0;
+
+        $this->readRows($file)
+            ->unique(fn (array $row) => $this->lgaKey($row['local_government_name']).'|'.static::normalize($row['ward_name']))
+            ->each(function (array $row) use ($wardIndex, $lgas, &$created): void {
+                $lgaKey = $this->lgaKey($row['local_government_name']);
+                $lga = $lgas[$lgaKey] ?? null;
+
+                if ($lga === null || isset($wardIndex[$lgaKey][static::normalize($row['ward_name'])])) {
+                    return;
+                }
+
+                Ward::query()->create([
+                    'local_government_id' => $lga->id,
+                    'name' => static::displayName($row['ward_name']),
+                    'is_active' => true,
+                ]);
+                $created++;
+            });
+
+        $this->info("Created {$created} ward(s) from INEC registration areas.");
+    }
+
+    /**
+     * Title-case INEC's upper-case names while keeping roman numerals (Festac III).
+     */
+    public static function displayName(string $name): string
+    {
+        $titled = Str::title(Str::lower(Str::squish($name)));
+
+        return (string) preg_replace_callback(
+            '/\\b(?:I{1,3}|Iv|Vi{0,3}|Ix|Xi{0,3})\\b/i',
+            fn (array $match): string => Str::upper($match[0]),
+            $titled,
+        );
     }
 
     /**

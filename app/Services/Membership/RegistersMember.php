@@ -85,7 +85,7 @@ class RegistersMember
         $skipTurnstile = (bool) ($input['skip_turnstile'] ?? false)
             || (app()->environment('local', 'testing') && blank(config('services.turnstile.secret_key')));
 
-        $validated = Validator::make($input, $this->rules($role))->validate();
+        $validated = Validator::make($input, $this->rules($role), $this->messages())->validate();
 
         $phone = $validated['phone'];
         $ward = Ward::query()->with('localGovernment')->findOrFail($validated['ward_id']);
@@ -145,6 +145,19 @@ class RegistersMember
                 'nullable',
                 Rule::in($channels),
             ],
+        ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        $loginHint = 'You already have an account. Log in instead of registering again (use "Forgot password" if needed).';
+
+        return [
+            'email.unique' => 'An account with this email address already exists. '.$loginHint,
+            'phone.unique' => 'An account with this phone number already exists. '.$loginHint,
         ];
     }
 

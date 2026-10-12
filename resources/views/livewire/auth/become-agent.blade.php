@@ -6,6 +6,14 @@
 
     <x-auth-session-status class="text-center" :status="session('status')" />
 
+    <div class="rounded-lg border border-lga-green/40 bg-lga-green/10 p-4 text-sm" role="note">
+        <p class="font-semibold">{{ __('Already a coordinator or agent?') }}</p>
+        <p class="mt-1">{{ __('You don\'t need to register again or enter a referral code. Log in with your email and password.') }}</p>
+        <flux:button :href="route('login')" wire:navigate variant="primary" size="sm" class="mt-3">{{ __('Log in to your account') }}</flux:button>
+    </div>
+
+    <p class="text-sm text-zinc-600 dark:text-zinc-400">{{ __('New here? Fill in the form below with the referral code from your Ward or LGA Coordinator.') }}</p>
+
     <form wire:submit="register" class="flex flex-col gap-4" novalidate>
         @if ($errors->any())
             <div class="rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400" role="alert">

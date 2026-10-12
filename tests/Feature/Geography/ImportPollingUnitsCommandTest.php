@@ -66,3 +66,16 @@ test('re-running the import is idempotent', function () {
 
     expect(PollingUnit::query()->where('ward_id', $this->isaleOdo->id)->count())->toBe(3);
 });
+
+test('can create missing INEC wards and import their units', function () {
+    $this->artisan('geography:import-polling-units', ['--file' => $this->csv, '--report' => $this->report, '--create-missing-wards' => true])
+        ->assertSuccessful();
+
+    $keke = Ward::query()->where('name', 'Keke')->first();
+
+    expect($keke)->not->toBeNull()
+        ->and($keke->local_government_id)->toBe($this->isaleOdo->local_government_id)
+        ->and($keke->pollingUnits()->pluck('name')->all())->toBe(['KEKE MARKET'])
+        ->and(Ward::query()->where('name', 'like', '%Olamaboro%')->exists())->toBeFalse()
+        ->and(Ward::query()->where('local_government_id', $this->festac->local_government_id)->count())->toBe(1);
+});

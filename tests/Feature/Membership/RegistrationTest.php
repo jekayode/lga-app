@@ -125,3 +125,19 @@ test('turnstile is required outside local environments even when the secret is m
         'skip_turnstile' => false,
     ]));
 })->throws(ValidationException::class, 'turnstile token');
+
+test('existing users who try to register again are told to log in instead', function () {
+    $coordinator = makeWardCoordinator();
+    $existing = User::factory()->lgaCoordinator()->create(['email' => 'coordinator@example.com']);
+
+    expect(fn () => app(RegistersMember::class)->registerAgent(registrationPayload($coordinator, [
+        'email' => 'coordinator@example.com',
+    ])))->toThrow(ValidationException::class, 'already exists');
+});
+
+test('coordinators corner points existing accounts to the login page', function () {
+    $this->get(route('become-agent'))
+        ->assertOk()
+        ->assertSee('Already a coordinator or agent?')
+        ->assertSee(route('login'), false);
+});
